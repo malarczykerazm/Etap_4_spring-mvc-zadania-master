@@ -21,19 +21,29 @@ import pl.spring.demo.service.BookService;
 @Controller
 @RequestMapping("/books")
 public class BookController {
+
+	@Autowired
+	private BookService bookService;
+	
+//	@RequestMapping
+//	public String list(Model model) {
+//		// TODO: implement default method
+//		return ViewNames.BOOKS;
+//	}
 	
 	@RequestMapping
-	public String list(Model model) {
-		// TODO: implement default method
-		return ViewNames.BOOKS;
+	public ModelAndView list(Model model) {
+		return allBooks();
 	}
-	
+
 	/**
 	 * Method collects info about all books
 	 */
 	@RequestMapping("/all")
 	public ModelAndView allBooks() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject(ModelConstants.BOOK_LIST, bookService.findAllBooks());
+		modelAndView.setViewName(ViewNames.BOOKS);
 		return modelAndView;
 	}
 
