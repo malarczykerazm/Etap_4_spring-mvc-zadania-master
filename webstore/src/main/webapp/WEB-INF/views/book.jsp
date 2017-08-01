@@ -14,6 +14,13 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Book info</h1>
+				<p>Here you can see the chosen book info</p>
+				<p>
+					<a href="<spring:url value="/books" />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span> back
+					</a>
+
+				</p>
 			</div>
 		</div>
 	</section>
@@ -22,18 +29,12 @@
 			<div class="col-md-5">
 				<h3>${book.id}</h3>
 				<p>
-					<span style = "color:#8866ff;">
-					<strong>Book title: </strong>${book.title}</span>
+					<strong>Book title: </strong>${book.title}
 				</p>
 				<p>
 					<strong>Wrote by</strong>: ${book.authors}
 				</p>
-				<p>
-					<a href="<spring:url value="/books" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
-					</a>
 
-				</p>
 
 			</div>
 		</div>

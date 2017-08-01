@@ -15,6 +15,12 @@
 			<div class="container">
 				<h1>Books</h1>
 				<p>This page contains all informations about books</p>
+				<p>
+					<a href="<spring:url value="/" />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span> back
+					</a>
+				</p>
+				
 			</div>
 		</div>
 	</section>
@@ -42,6 +48,7 @@
 				</div>
 			</c:forEach>
 		</div>
+		
 	</section>
 </body>
 </html>

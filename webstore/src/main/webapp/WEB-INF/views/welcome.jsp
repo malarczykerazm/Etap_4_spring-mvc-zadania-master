@@ -39,6 +39,23 @@
 			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 				<div class="thumbnail">
 					<div class="caption">
+						<h3>Find</h3>
+						<p>Find books</p>
+						<p>
+							<a href="/webstore/find" class="btn btn-default"> <span
+								class="glyphicon-info-sign glyphicon" /></span> Find books
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+				<div class="thumbnail">
+					<div class="caption">
 						<h3>Add book</h3>
 						<p>Create new book</p>
 						<p>
