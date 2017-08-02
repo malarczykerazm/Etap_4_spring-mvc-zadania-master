@@ -6,30 +6,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Hello</title>
+<title>Welcome</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>${greeting}</h1>
+				<h1><small>Welcome to</small><br>${company}</h1>
 				<p>${info}</p>
 			</div>
+			<a href="<c:url value="/j_spring_security_logout" />"
+				class="btn btn-danger btn-mini pull-right">logout</a>
 		</div>
 	</section>
 	<section class="container">
 		<div class="row">
 
-			<div class="col-md-4">
+			<div class="col-lg-3">
 				<section class="container">
-					<div class="col-md-7" style="padding-bottom: 15px">
+					<div class="col-lg-10" style="padding-bottom: 15px">
 						<div class="thumbnail">
 							<div class="caption">
-								<h3>Books</h3>
-								<p>Display all books</p>
+								<h3>Show all<br><small>books</small></h3>
 								<p>
 									<a href="/webstore/books" class="btn btn-default"> <span
-										class="glyphicon-info-sign glyphicon" /></span> Show all books
+										class="glyphicon-info-sign glyphicon" /></span> show all books
 									</a>
 								</p>
 							</div>
@@ -38,16 +39,15 @@
 
 				</section>
 			</div>
-			<div class="col-md-4">
+			<div class="col-lg-3">
 				<section class="container">
-					<div class="col-md-6" style="padding-bottom: 15px">
+					<div class="col-lg-11" style="padding-bottom: 15px">
 						<div class="thumbnail">
 							<div class="caption">
-								<h3>Find</h3>
-								<p>Find books</p>
+								<h3>Search<br><small>for books</small></h3>
 								<p>
 									<a href="/webstore/books/find" class="btn btn-default"> <span
-										class="glyphicon-info-sign glyphicon" /></span> Find books
+										class="glyphicon-info-sign glyphicon" /></span> search for books
 									</a>
 								</p>
 							</div>
@@ -55,16 +55,31 @@
 					</div>
 				</section>
 			</div>
-			<div class="col-md-4">
+			<div class="col-lg-3">
 				<section class="container">
-					<div class="col-md-6" style="padding-bottom: 15px">
+					<div class="col-lg-9" style="padding-bottom: 15px">
 						<div class="thumbnail">
 							<div class="caption">
-								<h3>Add book</h3>
-								<p>Create new book</p>
+								<h3>Add<br><small>a book</small></h3>
 								<p>
 									<a href="/webstore/books/add" class="btn btn-default"> <span
-										class="glyphicon-info-sign glyphicon" /></span> Add book
+										class="glyphicon-plus glyphicon" /></span> add a book
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-3">
+				<section class="container">
+					<div class="col-lg-10" style="padding-bottom: 15px">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>Delete<br><small>a book</small></h3>
+								<p>
+									<a href="/webstore/books/delete" class="btn btn-default"> <span
+										class="glyphicon-remove glyphicon" /></span> delete a book
 									</a>
 								</p>
 							</div>

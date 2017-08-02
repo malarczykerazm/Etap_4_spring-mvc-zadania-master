@@ -15,7 +15,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Search</h1>
-				<p>Find a book</p>
+				<p>find a book</p>
 				<a href="<spring:url value="/" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
 					</a>
@@ -52,7 +52,7 @@
 			</fieldset>
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<input type="submit" id="btnAdd" class="btn btn-primary"
+					<input type="submit" id="btnSearch" class="btn btn-primary"
 						value="Search" />
 				</div>
 			</div>

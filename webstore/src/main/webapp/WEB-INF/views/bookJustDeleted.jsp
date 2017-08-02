@@ -7,17 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Book</title>
+<title>Deleted book</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Book info</h1>
-				<p>Here you can see the chosen book info</p>
+				<h1>The book has been deleted</h1>
 				<p>
 					<a href="<spring:url value="/books" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
+					</a>
+					<a href="/webstore/books/delete" class="btn btn-default"> <span
+						class="glyphicon-remove glyphicon" /></span> Delete another book
 					</a>
 				</p>
 			</div>

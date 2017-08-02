@@ -34,7 +34,7 @@ public class HomeControllerTest {
 		ResultActions resultActions = mockMvc.perform(get("/"));
 		// then
 		resultActions.andExpect(view().name("welcome"))
-				.andExpect(model().attribute(ModelConstants.GREETING, new ArgumentMatcher<Object>() {
+				.andExpect(model().attribute(ModelConstants.COMPANY, new ArgumentMatcher<Object>() {
 					@Override
 					public boolean matches(Object argument) {
 						String text = (String) argument;

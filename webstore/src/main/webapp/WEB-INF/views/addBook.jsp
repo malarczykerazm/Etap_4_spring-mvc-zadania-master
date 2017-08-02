@@ -14,11 +14,10 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Book</h1>
-				<p>Add a new book</p>
-				<a href="<spring:url value="/" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
-					</a>
+				<h1>Add<br><small>a new book</small></h1>
+				<a href="<spring:url value="/" />" class="btn btn-default"> <span
+					class="glyphicon-hand-left glyphicon"></span> back
+				</a>
 			</div>
 			<a href="<c:url value="/j_spring_security_logout" />"
 				class="btn btn-danger btn-mini pull-right">logout</a>
@@ -41,7 +40,7 @@
 					<label class="control-label col-lg-2" for="name">Author(s)</label>
 					<div class="col-lg-10">
 						<form:input id="authors" path="authors" type="text"
-							class="form:input-large" required="required"/>
+							class="form:input-large" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -49,9 +48,10 @@
 					<div class="col-lg-10">
 						<form:radiobutton path="status" value="FREE" required="required" />
 						Free
-						<form:radiobutton path="status" value="LOAN" required="required"/>
+						<form:radiobutton path="status" value="LOAN" required="required" />
 						Loan
-						<form:radiobutton path="status" value="MISSING" required="required"/>
+						<form:radiobutton path="status" value="MISSING"
+							required="required" />
 						Missing
 					</div>
 				</div>

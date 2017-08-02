@@ -13,12 +13,13 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Books<br><small>all books info</small></h1>
+				<h1>Books<br><small>chose a book you wish to remove</small></h1>
 				<p>
-					<a href="<spring:url value="/" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
+					<a href="<spring:url value="/" />" class="btn btn-default"> <span
+						class="glyphicon-hand-left glyphicon"></span> back
 					</a>
 				</p>
+
 			</div>
 		</div>
 	</section>
@@ -34,10 +35,12 @@
 							<p>${book.authors}</p>
 							<p>Status: ${book.status}</p>
 							<p>
-								<a
-									href=" <spring:url value="/books/book?id=${book.id}" /> "
+								<a href=" <spring:url value="/books/book?id=${book.id}" /> "
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> details
+								</a> <a href=" <spring:url value="/books/deletedBook?id=${book.id}" /> "
+									class="btn btn-danger btn-mini pull-right"> <span
+									class="glyphicon-remove glyphicon"/></span> delete
 								</a>
 							</p>
 
@@ -46,7 +49,7 @@
 				</div>
 			</c:forEach>
 		</div>
-		
+
 	</section>
 </body>
 </html>
