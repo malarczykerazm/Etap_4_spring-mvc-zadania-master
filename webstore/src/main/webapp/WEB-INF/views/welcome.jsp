@@ -12,12 +12,14 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1><small>Welcome to</small><br>${company}</h1>
+				<h1>
+					<small>Welcome to</small><br>${company}</h1>
 				<p>${info}</p>
 			</div>
-			<a href="<c:url value="/j_spring_security_logout" />"
-				class="btn btn-danger btn-mini pull-right">logout</a>
+			<%= ${pageContext.request.userPrincipal}.isAuthenticated() ? "zalogowany" : "" %>
+			
 		</div>
+
 	</section>
 	<section class="container">
 		<div class="row">
@@ -27,7 +29,9 @@
 					<div class="col-lg-10" style="padding-bottom: 15px">
 						<div class="thumbnail">
 							<div class="caption">
-								<h3>Show all<br><small>books</small></h3>
+								<h3>
+									Show all<br> <small>books</small>
+								</h3>
 								<p>
 									<a href="/webstore/books" class="btn btn-default"> <span
 										class="glyphicon-info-sign glyphicon" /></span> show all books
@@ -44,10 +48,12 @@
 					<div class="col-lg-11" style="padding-bottom: 15px">
 						<div class="thumbnail">
 							<div class="caption">
-								<h3>Search<br><small>for books</small></h3>
+								<h3>
+									Search<br> <small>for books</small>
+								</h3>
 								<p>
 									<a href="/webstore/books/find" class="btn btn-default"> <span
-										class="glyphicon-info-sign glyphicon" /></span> search for books
+										class="glyphicon-search glyphicon" /></span> search for books
 									</a>
 								</p>
 							</div>
@@ -60,7 +66,9 @@
 					<div class="col-lg-9" style="padding-bottom: 15px">
 						<div class="thumbnail">
 							<div class="caption">
-								<h3>Add<br><small>a book</small></h3>
+								<h3>
+									Add<br> <small>a book</small>
+								</h3>
 								<p>
 									<a href="/webstore/books/add" class="btn btn-default"> <span
 										class="glyphicon-plus glyphicon" /></span> add a book
@@ -76,10 +84,12 @@
 					<div class="col-lg-10" style="padding-bottom: 15px">
 						<div class="thumbnail">
 							<div class="caption">
-								<h3>Delete<br><small>a book</small></h3>
+								<h3>
+									Delete<br> <small>a book</small>
+								</h3>
 								<p>
 									<a href="/webstore/books/delete" class="btn btn-default"> <span
-										class="glyphicon-remove glyphicon" /></span> delete a book
+										class="glyphicon-trash glyphicon" /></span> delete a book
 									</a>
 								</p>
 							</div>

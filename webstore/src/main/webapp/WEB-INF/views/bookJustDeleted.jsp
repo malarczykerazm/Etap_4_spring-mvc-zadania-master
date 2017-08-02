@@ -19,7 +19,7 @@
 						<span class="glyphicon-hand-left glyphicon"></span> back
 					</a>
 					<a href="/webstore/books/delete" class="btn btn-default"> <span
-						class="glyphicon-remove glyphicon" /></span> Delete another book
+						class="glyphicon-trash glyphicon" /></span> delete another book
 					</a>
 				</p>
 			</div>

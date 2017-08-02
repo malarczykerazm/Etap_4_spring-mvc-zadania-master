@@ -16,19 +16,26 @@
 				<h1>Searching results</h1>
 				<p>This page contains some basic informations about found books</p>
 				<p>
-					<a href="<spring:url value="/books/find" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
+					<a href="<spring:url value="/books/find" />"
+						class="btn btn-default"> <span
+						class="glyphicon-hand-left glyphicon"></span> back
 					</a>
 				</p>
-				
+
 			</div>
 		</div>
 	</section>
 
 	<section class="container">
+		<%
+			int i = 0;
+		%>
 		<div class="row">
 			<c:forEach items="${bookList}" var="book">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+					<%
+						i = i + 1;
+					%>
 					<div class="thumbnail">
 						<div class="caption">
 							<h3>${book.id}</h3>
@@ -36,19 +43,19 @@
 							<p>${book.authors}</p>
 							<p>Status: ${book.status}</p>
 							<p>
-								<a
-									href=" <spring:url value="/books/book?id=${book.id}" /> "
+								<a href=" <spring:url value="/books/book?id=${book.id}" /> "
 									class="btn btn-primary"> <span
-									class="glyphicon-info-sign glyphicon" /></span> Details
+									class="glyphicon-info-sign glyphicon" /></span> details
 								</a>
 							</p>
 
 						</div>
 					</div>
+					<%=i % 4 == 0 ? "</div><div class=\"row\">" : ""%>
 				</div>
 			</c:forEach>
 		</div>
-		
+
 	</section>
 </body>
 </html>

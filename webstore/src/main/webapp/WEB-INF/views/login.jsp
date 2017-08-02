@@ -14,8 +14,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Login</h1>
-				<p>login</p>
+				<h1>Login page<br><small>please login</small></h1>
 			</div>
 		</div>
 	</section>
@@ -46,7 +45,7 @@
 										name='j_password' type="password" value="">
 								</div>
 								<input class="btn btn-lg btn-success btn-block" type="submit"
-									value="Submit">
+									value="sign in">
 							</fieldset>
 						</form>
 					</div>

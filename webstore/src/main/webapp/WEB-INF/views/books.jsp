@@ -13,10 +13,12 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Books<br><small>all books info</small></h1>
+				<h1>
+					Books<br> <small>info</small>
+				</h1>
 				<p>
-					<a href="<spring:url value="/" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
+					<a href="<spring:url value="/" />" class="btn btn-default"> <span
+						class="glyphicon-hand-left glyphicon"></span> back
 					</a>
 				</p>
 			</div>
@@ -24,9 +26,15 @@
 	</section>
 
 	<section class="container">
+		<%
+			int i = 0;
+		%>
 		<div class="row">
 			<c:forEach items="${bookList}" var="book">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+					<%
+						i = i + 1;
+					%>
 					<div class="thumbnail">
 						<div class="caption">
 							<h3>${book.id}</h3>
@@ -34,8 +42,7 @@
 							<p>${book.authors}</p>
 							<p>Status: ${book.status}</p>
 							<p>
-								<a
-									href=" <spring:url value="/books/book?id=${book.id}" /> "
+								<a href=" <spring:url value="/books/book?id=${book.id}" /> "
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> details
 								</a>
@@ -43,10 +50,11 @@
 
 						</div>
 					</div>
+					<%= i % 4 == 0 ? "</div><div class=\"row\">" : "" %>
 				</div>
 			</c:forEach>
 		</div>
-		
 	</section>
+	
 </body>
 </html>

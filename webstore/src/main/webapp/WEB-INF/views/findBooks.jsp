@@ -14,8 +14,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Search</h1>
-				<p>find a book</p>
+				<h1>Search<br><small>find a book</small></h1>
 				<a href="<spring:url value="/" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
 					</a>
@@ -53,7 +52,7 @@
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnSearch" class="btn btn-primary"
-						value="Search" />
+						value="search" />
 				</div>
 			</div>
 		</form:form>

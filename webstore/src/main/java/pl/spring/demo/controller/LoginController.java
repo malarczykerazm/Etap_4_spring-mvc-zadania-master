@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.spring.demo.constants.ModelConstants;
 import pl.spring.demo.constants.ViewNames;
 
 @Controller
@@ -27,16 +28,15 @@ public class LoginController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
-		return ViewNames.LOGIN;
+		return ViewNames.LOGOUT;
 	}
 
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public ModelAndView accesssDenied(Principal user) {
-		ModelAndView model = new ModelAndView();
-
-		// TODO: implement mechanism redirecting to new custom page _403
-		// (consider extending informations by custom values)
-		return model;
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject(ModelConstants.ERROR_MESSAGE, ("You are logged as " + user.getName()
+				+ ". This user does not have permission to use the chosen option."));
+		return modelAndView;
 
 	}
 }

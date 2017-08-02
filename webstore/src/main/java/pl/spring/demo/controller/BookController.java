@@ -20,9 +20,8 @@ import pl.spring.demo.service.BookService;
 import pl.spring.demo.to.BookTo;
 
 /**
- * Book controller
  * 
- * @author mmotowid
+ * @author EMALARCZ
  *
  */
 @Controller
@@ -31,12 +30,6 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
-
-	// @RequestMapping
-	// public String list(Model model) {
-	// // TODO: implement default method
-	// return ViewNames.BOOKS;
-	// }
 
 	/**
 	 * Method collects info about all books
@@ -117,7 +110,8 @@ public class BookController {
 	}
 
 	/**
-	 * Method starts a form, that allows to provide new book data
+	 * Method shows a list o books with added option DELETE next to every
+	 * position on the list
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteBook() {
@@ -128,8 +122,7 @@ public class BookController {
 	}
 
 	/**
-	 * Method adds a new book to database with attributes provided by the GET
-	 * method
+	 * Method deletes a chosen book from database and shows a proper book info
 	 */
 	@RequestMapping(value = "/deletedBook", method = RequestMethod.GET)
 	public ModelAndView deleteBook(@RequestParam("id") Long id) {

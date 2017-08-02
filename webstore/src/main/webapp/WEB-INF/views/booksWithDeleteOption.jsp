@@ -25,9 +25,15 @@
 	</section>
 
 	<section class="container">
+	<%
+			int i = 0;
+		%>
 		<div class="row">
 			<c:forEach items="${bookList}" var="book">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+				<%
+						i = i + 1;
+					%>
 					<div class="thumbnail">
 						<div class="caption">
 							<h3>${book.id}</h3>
@@ -38,14 +44,16 @@
 								<a href=" <spring:url value="/books/book?id=${book.id}" /> "
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> details
-								</a> <a href=" <spring:url value="/books/deletedBook?id=${book.id}" /> "
-									class="btn btn-danger btn-mini pull-right"> <span
-									class="glyphicon-remove glyphicon"/></span> delete
+								</a>
+								<a href=" <spring:url value="/books/deletedBook?id=${book.id}" /> "
+									class="btn btn-danger btn-mini "> <span
+									class="glyphicon-trash glyphicon"/></span> delete
 								</a>
 							</p>
 
 						</div>
 					</div>
+					<%= i % 4 == 0 ? "</div><div class=\"row\">" : "" %>
 				</div>
 			</c:forEach>
 		</div>

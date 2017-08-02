@@ -59,7 +59,7 @@
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"
-						value="Create" />
+						value="add book" />
 				</div>
 			</div>
 		</form:form>
