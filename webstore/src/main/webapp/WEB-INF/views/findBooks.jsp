@@ -14,7 +14,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Search<br><small>find a book</small></h1>
+				<h1>Search<br><small>for a book</small></h1>
 				<a href="<spring:url value="/" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
 					</a>

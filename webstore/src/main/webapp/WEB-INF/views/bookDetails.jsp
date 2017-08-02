@@ -13,7 +13,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Book info<br><small>Here you can see the chosen book info</small></h1>
+				<h1>Book info<br><small>of your choice</small></h1>
 				<p>
 					<a href="<spring:url value="/books" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
@@ -31,7 +31,7 @@
 						<strong>&nbsp;&nbsp;Book title: </strong>${book.title}
 					</p>
 					<p>
-						<strong>&nbsp;&nbsp;Wrote by: </strong>${book.authors}
+						<strong>&nbsp;&nbsp;Written by: </strong>${book.authors}
 					</p>
 					<p>
 						<strong>&nbsp;&nbsp;Current status: </strong>${book.status}

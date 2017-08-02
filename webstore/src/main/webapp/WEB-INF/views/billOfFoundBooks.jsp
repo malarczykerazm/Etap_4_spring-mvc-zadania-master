@@ -13,8 +13,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Searching results</h1>
-				<p>This page contains some basic informations about found books</p>
+				<h1>Searching results<br><small>found books info</small></h1>
 				<p>
 					<a href="<spring:url value="/books/find" />"
 						class="btn btn-default"> <span

@@ -13,7 +13,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>The book has been deleted</h1>
+				<h1>The book<br><small>has been deleted</small></h1>
 				<p>
 					<a href="<spring:url value="/books" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
@@ -34,7 +34,7 @@
 						<strong>&nbsp;&nbsp;Book title: </strong>${book.title}
 					</p>
 					<p>
-						<strong>&nbsp;&nbsp;Wrote by: </strong>${book.authors}
+						<strong>&nbsp;&nbsp;Written by: </strong>${book.authors}
 					</p>
 					<p>
 						<strong>&nbsp;&nbsp;Current status: </strong>${book.status}

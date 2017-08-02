@@ -8,13 +8,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Add a Book</title>
+<title>Add a book</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Add<br><small>a new book</small></h1>
+				<h1>
+					Add<br> <small>a new book</small>
+				</h1>
 				<a href="<spring:url value="/" />" class="btn btn-default"> <span
 					class="glyphicon-hand-left glyphicon"></span> back
 				</a>

@@ -1,5 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <html>
 <head>
@@ -14,10 +16,21 @@
 			<div class="container">
 				<h1>
 					<small>Welcome to</small><br>${company}</h1>
-				<p>${info}</p>
 			</div>
-			<%= ${pageContext.request.userPrincipal}.isAuthenticated() ? "zalogowany" : "" %>
-			
+			<sec:authorize access="isAuthenticated()">
+				<div class="container">
+					<a href="<c:url value="/j_spring_security_logout" />"
+						class="btn btn-danger btn-mini pull-left"><span
+						class="glyphicon glyphicon-remove"></span> logout</a>
+				</div>
+			</sec:authorize>
+			<sec:authorize access="isAnonymous()">
+			<div class="container">
+				<a href="<c:url value="/login" />"
+					class="btn btn-success btn-mini pull-left"><span
+					class="glyphicon glyphicon-user"></span> login</a>
+					</div>
+			</sec:authorize>
 		</div>
 
 	</section>
@@ -61,42 +74,46 @@
 					</div>
 				</section>
 			</div>
-			<div class="col-lg-3">
-				<section class="container">
-					<div class="col-lg-9" style="padding-bottom: 15px">
-						<div class="thumbnail">
-							<div class="caption">
-								<h3>
-									Add<br> <small>a book</small>
-								</h3>
-								<p>
-									<a href="/webstore/books/add" class="btn btn-default"> <span
-										class="glyphicon-plus glyphicon" /></span> add a book
-									</a>
-								</p>
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<div class="col-lg-3">
+					<section class="container">
+						<div class="col-lg-9" style="padding-bottom: 15px">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>
+										Add<br> <small>a book</small>
+									</h3>
+									<p>
+										<a href="/webstore/books/add" class="btn btn-success"> <span
+											class="glyphicon-plus glyphicon" /></span> add a book
+										</a>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-			</div>
-			<div class="col-lg-3">
-				<section class="container">
-					<div class="col-lg-10" style="padding-bottom: 15px">
-						<div class="thumbnail">
-							<div class="caption">
-								<h3>
-									Delete<br> <small>a book</small>
-								</h3>
-								<p>
-									<a href="/webstore/books/delete" class="btn btn-default"> <span
-										class="glyphicon-trash glyphicon" /></span> delete a book
-									</a>
-								</p>
+					</section>
+				</div>
+			</sec:authorize>
+			<sec:authorize access="hasRole('ROLE_LIBRARIAN')">
+				<div class="col-lg-3">
+					<section class="container">
+						<div class="col-lg-10" style="padding-bottom: 15px">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>
+										Delete<br> <small>a book</small>
+									</h3>
+									<p>
+										<a href="/webstore/books/delete" class="btn btn-danger"> <span
+											class="glyphicon-trash glyphicon" /></span> delete a book
+										</a>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-			</div>
+					</section>
+				</div>
+			</sec:authorize>
 		</div>
 	</section>
 </body>

@@ -14,6 +14,9 @@
 			<div class="container">
 				<h1>Error 403<br><small>Access denied</small></h1>
 				<p>${errorMessage}</p>
+				<a href="<spring:url value="/" />" class="btn btn-default"> <span
+					class="glyphicon-hand-left glyphicon"></span> back to home page
+				</a>
 			</div>
 		</div>
 	</section>

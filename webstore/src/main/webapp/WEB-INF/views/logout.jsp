@@ -30,14 +30,14 @@
 					</div>
 					<fieldset>
 						<a
-							href=" <spring:url value="/" /> "
-							class="btn btn-lg btn-success btn-block"> <span
-							class="glyphicon-hand-left glyphicon" /></span> back to home page
+							href=" <spring:url value="/login" /> "
+							class="btn btn-lg btn-default btn-block"> <span
+							class="glyphicon-user glyphicon"></span> login again
 						</a>
 						<a
-							href=" <spring:url value="/login" /> "
-							class="btn btn-lg btn-success btn-block"> <span
-							class="glyphicon-user glyphicon"></span> login again
+							href=" <spring:url value="/" /> "
+							class="btn btn-lg btn-primary btn-block"> <span
+							class="glyphicon-hand-left glyphicon" /></span> back to home page
 						</a>
 						
 					</fieldset>
