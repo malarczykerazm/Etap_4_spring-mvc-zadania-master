@@ -16,6 +16,9 @@
 			<div class="container">
 				<h1>Book</h1>
 				<p>Add a new book</p>
+				<a href="<spring:url value="/" />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span> back
+					</a>
 			</div>
 			<a href="<c:url value="/j_spring_security_logout" />"
 				class="btn btn-danger btn-mini pull-right">logout</a>
@@ -31,24 +34,24 @@
 					<label class="control-label col-lg-2" for="name">Title</label>
 					<div class="col-lg-10">
 						<form:input id="title" path="title" type="text"
-							class="form:input-large" />
+							class="form:input-large" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="name">Author</label>
+					<label class="control-label col-lg-2" for="name">Author(s)</label>
 					<div class="col-lg-10">
 						<form:input id="authors" path="authors" type="text"
-							class="form:input-large" />
+							class="form:input-large" required="required"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="status">status</label>
+					<label class="control-label col-lg-2" for="status">Status</label>
 					<div class="col-lg-10">
-						<form:radiobutton path="status" value="FREE" />
+						<form:radiobutton path="status" value="FREE" required="required" />
 						Free
-						<form:radiobutton path="status" value="LOAN" />
+						<form:radiobutton path="status" value="LOAN" required="required"/>
 						Loan
-						<form:radiobutton path="status" value="MISSING" />
+						<form:radiobutton path="status" value="MISSING" required="required"/>
 						Missing
 					</div>
 				</div>

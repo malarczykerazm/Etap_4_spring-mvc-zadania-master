@@ -19,52 +19,58 @@
 	</section>
 	<section class="container">
 		<div class="row">
-			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-				<div class="thumbnail">
-					<div class="caption">
-						<h3>Books</h3>
-						<p>Display all books</p>
-						<p>
-							<a href="/webstore/books" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Show all books
-							</a>
-						</p>
+
+			<div class="col-md-4">
+				<section class="container">
+					<div class="col-md-7" style="padding-bottom: 15px">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>Books</h3>
+								<p>Display all books</p>
+								<p>
+									<a href="/webstore/books" class="btn btn-default"> <span
+										class="glyphicon-info-sign glyphicon" /></span> Show all books
+									</a>
+								</p>
+							</div>
+						</div>
 					</div>
-				</div>
+
+				</section>
 			</div>
-		</div>
-	</section>
-	<section class="container">
-		<div class="row">
-			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-				<div class="thumbnail">
-					<div class="caption">
-						<h3>Find</h3>
-						<p>Find books</p>
-						<p>
-							<a href="/webstore/find" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Find books
-							</a>
-						</p>
+			<div class="col-md-4">
+				<section class="container">
+					<div class="col-md-6" style="padding-bottom: 15px">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>Find</h3>
+								<p>Find books</p>
+								<p>
+									<a href="/webstore/books/find" class="btn btn-default"> <span
+										class="glyphicon-info-sign glyphicon" /></span> Find books
+									</a>
+								</p>
+							</div>
+						</div>
 					</div>
-				</div>
+				</section>
 			</div>
-		</div>
-	</section>
-	<section class="container">
-		<div class="row">
-			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-				<div class="thumbnail">
-					<div class="caption">
-						<h3>Add book</h3>
-						<p>Create new book</p>
-						<p>
-							<a href="/webstore/books/add" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Add book
-							</a>
-						</p>
+			<div class="col-md-4">
+				<section class="container">
+					<div class="col-md-6" style="padding-bottom: 15px">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>Add book</h3>
+								<p>Create new book</p>
+								<p>
+									<a href="/webstore/books/add" class="btn btn-default"> <span
+										class="glyphicon-info-sign glyphicon" /></span> Add book
+									</a>
+								</p>
+							</div>
+						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 		</div>
 	</section>

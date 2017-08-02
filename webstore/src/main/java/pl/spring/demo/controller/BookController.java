@@ -1,5 +1,7 @@
 package pl.spring.demo.controller;
 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -69,13 +71,37 @@ public class BookController {
 	
 	/**
 	 * Method adds a new book to database with attributes provided
-	 * by the addNewBookParameters method
+	 * by the GET method
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView addNewBook(@ModelAttribute("newBook") BookTo book) {
 		bookService.saveBook(book);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName(ViewNames.ADD_BOOK);
+		modelAndView.addObject(ModelConstants.BOOK, bookService.findAllBooks().stream().filter(b -> (b.getId() == bookService.findAllBooks().size())).findFirst().orElse(null));
+		modelAndView.setViewName(ViewNames.BOOK_JUST_ADDED);
+		return modelAndView;
+	}
+	
+	/**
+	 * Method starts a form, that allows to provide new book searching parameters
+	 */
+	@RequestMapping(value = "/find", method = RequestMethod.GET)
+	public ModelAndView findBook() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("paramsOfBook", new BookTo());
+		modelAndView.setViewName(ViewNames.FIND_BOOKS);
+		return modelAndView;
+	}
+	
+	/**
+	 * Method returns results of book searching with attributes provided
+	 * by the POST method
+	 */
+	@RequestMapping(value = "/find", method = RequestMethod.POST)
+	public ModelAndView findBook(@ModelAttribute("paramsOfBook") BookTo paramsOfBook) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject(ModelConstants.BOOK_LIST, bookService.findAllBooks().stream().filter(b -> (b.getTitle().contains(paramsOfBook.getTitle()))).collect(Collectors.toList()));
+		modelAndView.setViewName(ViewNames.BILL_OF_FOUND_BOOKS);
 		return modelAndView;
 	}
 

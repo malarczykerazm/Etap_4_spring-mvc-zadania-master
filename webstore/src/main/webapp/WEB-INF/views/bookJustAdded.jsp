@@ -19,6 +19,9 @@
 					<a href="<spring:url value="/books" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
 					</a>
+					<a href="/webstore/books/add" class="btn btn-default"> <span
+						class="glyphicon-info-sign glyphicon" /></span> Add another book
+					</a>
 				</p>
 			</div>
 		</div>

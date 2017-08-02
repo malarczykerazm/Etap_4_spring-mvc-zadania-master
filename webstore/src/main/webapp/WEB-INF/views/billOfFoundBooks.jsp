@@ -7,16 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Books</title>
+<title>Searching results</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Books</h1>
-				<p>This page contains all informations about books</p>
+				<h1>Searching results</h1>
+				<p>This page contains some basic informations about found books</p>
 				<p>
-					<a href="<spring:url value="/" />" class="btn btn-default">
+					<a href="<spring:url value="/books/find" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
 					</a>
 				</p>

@@ -8,43 +8,55 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Login</title>
+<title>Find a book</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Find books</h1>
-				<p>Searching parameters</p>
+				<h1>Search</h1>
+				<p>Find a book</p>
+				<a href="<spring:url value="/" />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span> back
+					</a>
 			</div>
 		</div>
 	</section>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Please provide searching parameters</h3>
-					</div>
-					<div class="panel-body">
-						<form action="<c:url value="/j_spring_security_check"></c:url>"
-							method="post">
-							<fieldset>
-								<div class="form-group">
-									<input class="form-control" placeholder="book title"
-										name='j_username' type="text">
-								</div>
-								<div class="form-group">
-									<input class="form-control" placeholder="book author(s)"
-										name='j_password' type="text" value="">
-								</div>
-								<input class="btn btn-lg btn-success btn-block" type="submit"
-									value="Search">
-							</fieldset>
-						</form>
+	<section class="container">
+		<form:form modelAttribute="paramsOfBook" class="form-horizontal">
+			<fieldset>
+				<legend>Find a book</legend>
+
+				<!-- Sample template for some fields in Book Entity -->
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="name">Title</label>
+					<div class="col-lg-10">
+						<form:input id="title" path="title" type="text"
+							class="form:input-large" />
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="name">Author(s)</label>
+					<div class="col-lg-10">
+						<form:input id="authors" path="authors" type="text"
+							class="form:input-large" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="status"></label>
+					<div class="col-lg-10">
+						<form:checkbox path="status" value="FREE" />
+						free books only
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10">
+					<input type="submit" id="btnAdd" class="btn btn-primary"
+						value="Search" />
+				</div>
 			</div>
-		</div>
-	</div>
+		</form:form>
+	</section>
 </body>
+</html>
