@@ -16,21 +16,17 @@
 			<div class="container">
 				<h1>
 					<small>Welcome to</small><br>${company}</h1>
-			</div>
 			<sec:authorize access="isAuthenticated()">
-				<div class="container">
 					<a href="<c:url value="/j_spring_security_logout" />"
 						class="btn btn-danger btn-mini pull-left"><span
 						class="glyphicon glyphicon-remove"></span> logout</a>
-				</div>
 			</sec:authorize>
 			<sec:authorize access="isAnonymous()">
-			<div class="container">
 				<a href="<c:url value="/login" />"
 					class="btn btn-success btn-mini pull-left"><span
 					class="glyphicon glyphicon-user"></span> login</a>
-					</div>
 			</sec:authorize>
+			</div>
 		</div>
 
 	</section>
