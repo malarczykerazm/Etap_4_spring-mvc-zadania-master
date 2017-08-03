@@ -13,19 +13,24 @@
 <body>
 	<section>
 		<div class="jumbotron">
-			<div class="container">
-				<h1>
+			<div class="container" style="margin-bottom: -40px; height: 190px">
+				<h1 style="height: 65px">
 					<small>Welcome to</small><br>${company}</h1>
-			<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="isAuthenticated()">
+					<font size="3" color="gray">You are logged in as <b>${pageContext.request.userPrincipal.name}</b></font>
+					<br>
 					<a href="<c:url value="/j_spring_security_logout" />"
-						class="btn btn-danger btn-mini pull-left"><span
+						class="btn btn-danger btn-mini pull-left"
+						style="margin-top: -10px"><span
 						class="glyphicon glyphicon-remove"></span> logout</a>
-			</sec:authorize>
-			<sec:authorize access="isAnonymous()">
-				<a href="<c:url value="/login" />"
-					class="btn btn-success btn-mini pull-left"><span
-					class="glyphicon glyphicon-user"></span> login</a>
-			</sec:authorize>
+				</sec:authorize>
+				<sec:authorize access="isAnonymous()">
+					<font size="3" color="gray">You are not logged in.</font>
+					<br>
+					<a href="<c:url value="/login" />"
+						class="btn btn-success btn-mini pull-left" style="margin-top: -10px"><span
+						class="glyphicon glyphicon-user"style="margin-top: -10px"></span> login</a>
+				</sec:authorize>
 			</div>
 		</div>
 

@@ -12,7 +12,7 @@
 <body>
 	<section>
 		<div class="jumbotron">
-			<div class="container">
+			<div class="container" style="margin-bottom: -40px; height: 190px">
 				<h1>
 					Error 403<br> <small>Access denied</small>
 				</h1>

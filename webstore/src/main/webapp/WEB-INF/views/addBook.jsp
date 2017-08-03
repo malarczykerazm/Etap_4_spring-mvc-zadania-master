@@ -13,7 +13,7 @@
 <body>
 	<section>
 		<div class="jumbotron">
-			<div class="container">
+			<div class="container" style="margin-bottom: -40px; height: 190px">
 				<h1>
 					Add<br> <small>a new book</small>
 				</h1>

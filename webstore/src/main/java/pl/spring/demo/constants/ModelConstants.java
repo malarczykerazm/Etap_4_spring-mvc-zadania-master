@@ -13,7 +13,6 @@ public final class ModelConstants implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static final String COMPANY = "company";
-	public static final String INFO = "info";
 	public static final String BOOK_LIST = "bookList";
 	public static final String BOOK = "book";
 	public static final String ERROR_MESSAGE = "errorMessage";

@@ -13,7 +13,7 @@
 <body>
 	<section>
 		<div class="jumbotron">
-			<div class="container">
+			<div class="container" style="margin-bottom: -40px; height: 190px">
 				<h1>Search<br><small>for a book</small></h1>
 				<a href="<spring:url value="/" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back

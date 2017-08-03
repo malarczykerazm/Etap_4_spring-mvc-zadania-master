@@ -12,7 +12,7 @@
 <body>
 	<section>
 		<div class="jumbotron">
-			<div class="container">
+			<div class="container" style="margin-bottom: -40px; height: 190px">
 				<h1>The book<br><small>has been deleted</small></h1>
 				<p>
 					<a href="<spring:url value="/books" />" class="btn btn-default">
