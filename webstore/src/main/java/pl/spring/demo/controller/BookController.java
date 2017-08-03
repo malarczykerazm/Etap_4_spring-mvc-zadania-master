@@ -16,7 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.spring.demo.constants.ModelConstants;
 import pl.spring.demo.constants.ViewNames;
 import pl.spring.demo.enumerations.BookStatus;
+import pl.spring.demo.exceptions.NoSuchBookIdException;
+import pl.spring.demo.exceptions.NotEnoughBookDataException;
 import pl.spring.demo.service.BookService;
+import pl.spring.demo.service.BookValidationService;
 import pl.spring.demo.to.BookTo;
 
 /**
@@ -30,6 +33,9 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+
+	@Autowired
+	private BookValidationService bookValidation;
 
 	/**
 	 * Method collects info about all books
@@ -48,6 +54,15 @@ public class BookController {
 	@RequestMapping(value = "/book", method = RequestMethod.GET)
 	public ModelAndView oneBookById(@RequestParam("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView();
+
+		try {
+			bookValidation.validateIdOfBook(id);
+		} catch (NoSuchBookIdException e) {
+			modelAndView.addObject(ModelConstants.ERROR_MESSAGE, e.getMessage());
+			modelAndView.setViewName(ViewNames._404);
+			return modelAndView;
+		}
+
 		modelAndView.addObject(ModelConstants.BOOK,
 				bookService.findAllBooks().stream().filter(b -> (b.getId() == id)).findFirst().orElse(null));
 		modelAndView.setViewName(ViewNames.BOOK_DETAILS);
@@ -71,10 +86,18 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView addNewBook(@ModelAttribute("newBook") BookTo book) {
-		bookService.saveBook(book);
-		Long lastId = bookService.findAllBooks().stream().map(b -> b.getId()).max(Long::compare).get();
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(lastId));
+
+		try {
+			bookValidation.valideteBookData(book);
+		} catch (NotEnoughBookDataException e) {
+			modelAndView.addObject(ModelConstants.ERROR_MESSAGE, e.getMessage());
+			modelAndView.setViewName(ViewNames._404);
+			return modelAndView;
+		}
+
+		bookService.saveBook(book);
+		modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(bookService.getHighestId()));
 		modelAndView.setViewName(ViewNames.BOOK_JUST_ADDED);
 		return modelAndView;
 	}
@@ -97,13 +120,16 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/find", method = RequestMethod.POST)
 	public ModelAndView findBook(@ModelAttribute("paramsOfBook") BookTo paramsOfBook) {
-		ModelAndView modelAndView = new ModelAndView();
+
 		List<BookTo> billOfFoundBooks = bookService.findBooksByTitleAndAuthor(paramsOfBook.getTitle(),
 				paramsOfBook.getAuthors());
+
 		if (paramsOfBook.getStatus() == BookStatus.FREE) {
 			billOfFoundBooks = billOfFoundBooks.stream().filter(b -> (b.getStatus() == BookStatus.FREE))
 					.collect(Collectors.toList());
 		}
+
+		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject(ModelConstants.BOOK_LIST, billOfFoundBooks);
 		modelAndView.setViewName(ViewNames.BILL_OF_FOUND_BOOKS);
 		return modelAndView;
@@ -126,11 +152,19 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/deletedBook", method = RequestMethod.GET)
 	public ModelAndView deleteBook(@RequestParam("id") Long id) {
-		BookTo deletedBook = bookService.findBookById(id);
-		bookService.deleteBook(id);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject(ModelConstants.BOOK, deletedBook);
+
+		try {
+			bookValidation.validateIdOfBook(id);
+		} catch (NoSuchBookIdException e) {
+			modelAndView.addObject(ModelConstants.ERROR_MESSAGE, e.getMessage());
+			modelAndView.setViewName(ViewNames._404);
+			return modelAndView;
+		}
+
+		modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(id));
 		modelAndView.setViewName(ViewNames.BOOK_JUST_DELETED);
+		bookService.deleteBook(id);
 		return modelAndView;
 	}
 

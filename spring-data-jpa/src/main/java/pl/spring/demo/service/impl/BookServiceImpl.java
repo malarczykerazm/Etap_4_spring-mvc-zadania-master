@@ -41,7 +41,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookTo findBookById(Long id) {
-		return BookMapper.map2To(bookRepository.findBookById(id)).get(0);
+		return BookMapper.map2To(bookRepository.findBookById(id)).stream().findFirst().orElse(null);
 	}
 
 	@Override
@@ -56,7 +56,11 @@ public class BookServiceImpl implements BookService {
 	@Transactional(readOnly = false)
 	public void deleteBook(Long id) {
 		bookRepository.delete(id);
+	}
 
+	@Override
+	public Long getHighestId() {
+		return this.findAllBooks().stream().map(b -> b.getId()).max(Long::compare).get();
 	}
 
 }

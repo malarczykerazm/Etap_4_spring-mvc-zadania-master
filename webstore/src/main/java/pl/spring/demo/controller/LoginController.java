@@ -36,6 +36,7 @@ public class LoginController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject(ModelConstants.ERROR_MESSAGE, ("You are logged as " + user.getName()
 				+ ". This user does not have permission to use the chosen option."));
+		modelAndView.setViewName(ViewNames._403);
 		return modelAndView;
 
 	}

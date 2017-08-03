@@ -13,13 +13,23 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container" style="margin-bottom: -40px; height: 190px">
-				<h1>The book<br><small>has been added</small></h1>
+				<h1>
+					The book<br>
+					<small>has been added</small>
+				</h1>
 				<p>
-					<a href="<spring:url value="/books" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
+					<a
+						href="<spring:url value="/books" />" class="btn btn-default pull-left"
+						style="margin-right: 2px"> <span class="glyphicon-hand-left
+						glyphicon"></span> back
 					</a>
-					<a href="/webstore/books/add" class="btn btn-default"> <span
-						class="glyphicon-info-sign glyphicon" /></span> add another book
+					<a href="<spring:url value="/books/add" />" class="btn btn-default"> <span
+						class="glyphicon-plus glyphicon"></span> add another book
+					</a>
+					<a href="<c:url value="/j_spring_security_logout" />"
+						class="btn btn-danger btn-mini pull-right"
+						style="margin-right: 2px"> <span
+						class="glyphicon glyphicon-remove"></span> logout
 					</a>
 				</p>
 			</div>

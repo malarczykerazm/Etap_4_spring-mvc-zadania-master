@@ -17,8 +17,15 @@
 					Books<br> <small>info</small>
 				</h1>
 				<p>
-					<a href="<spring:url value="/" />" class="btn btn-default"> <span
-						class="glyphicon-hand-left glyphicon"></span> back
+					<a
+						href="<spring:url value="/" />" class="btn btn-default pull-left"
+						style="margin-right: 2px"> <span class="glyphicon-hand-left
+						glyphicon"></span> back
+					</a>
+					<a href="<c:url value="/j_spring_security_logout" />"
+						class="btn btn-danger btn-mini pull-right"
+						style="margin-right: 2px"> <span
+						class="glyphicon glyphicon-remove"></span> logout
 					</a>
 				</p>
 			</div>

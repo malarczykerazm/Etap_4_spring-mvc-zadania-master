@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
 <head>
@@ -47,7 +48,7 @@
 									Show all<br> <small>books</small>
 								</h3>
 								<p>
-									<a href="/webstore/books" class="btn btn-default"> <span
+									<a href="<spring:url value="/books" />" class="btn btn-default"> <span
 										class="glyphicon-info-sign glyphicon" /></span> show all books
 									</a>
 								</p>
@@ -66,7 +67,7 @@
 									Search<br> <small>for books</small>
 								</h3>
 								<p>
-									<a href="/webstore/books/find" class="btn btn-default"> <span
+									<a href="<spring:url value="/books/find" />" class="btn btn-default"> <span
 										class="glyphicon-search glyphicon" /></span> search for books
 									</a>
 								</p>
@@ -85,7 +86,7 @@
 										Add<br> <small>a book</small>
 									</h3>
 									<p>
-										<a href="/webstore/books/add" class="btn btn-success"> <span
+										<a href="<spring:url value="/books/add" />" class="btn btn-success"> <span
 											class="glyphicon-plus glyphicon" /></span> add a book
 										</a>
 									</p>
@@ -105,7 +106,7 @@
 										Delete<br> <small>a book</small>
 									</h3>
 									<p>
-										<a href="/webstore/books/delete" class="btn btn-danger"> <span
+										<a href="<spring:url value="/books/delete" />" class="btn btn-danger"> <span
 											class="glyphicon-trash glyphicon" /></span> delete a book
 										</a>
 									</p>
