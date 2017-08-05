@@ -126,16 +126,13 @@ public class BookControllerTest {
 		newBook.setAuthors("author");
 		newBook.setStatus(BookStatus.FREE);
 
-		String jsonNewBook = new ObjectMapper().writeValueAsString(newBook);
-
 		Mockito.doNothing().when(bookValidation).valideteBookData(newBook);
 		given(bookService.saveBook(newBook)).willReturn(newBook);
 		given(bookService.getHighestId()).willReturn(newId);
 		given(bookService.findBookById(newId)).willReturn(newBook);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(post("/books/add").flashAttr("newBook", newBook)
-				.contentType(MediaType.APPLICATION_JSON).content(jsonNewBook));
+		ResultActions resultActions = mockMvc.perform(post("/books/add").flashAttr("newBook", newBook));
 
 		// then
 		resultActions.andExpect(view().name("bookJustAdded")).andExpect(model().attribute("book", newBook));
@@ -166,8 +163,6 @@ public class BookControllerTest {
 		searchingParams.setTitle("title");
 		searchingParams.setAuthors("");
 
-		String jsonSearchingParams = new ObjectMapper().writeValueAsString(searchingParams);
-
 		List<BookTo> books = new ArrayList<BookTo>();
 		books.add(book1);
 		books.add(book2);
@@ -176,11 +171,12 @@ public class BookControllerTest {
 				.willReturn(books);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(post("/books/find").flashAttr("paramsOfBook", searchingParams)
-				.contentType(MediaType.APPLICATION_JSON).content(jsonSearchingParams));
+		ResultActions resultActions = mockMvc.perform(post("/books/find").flashAttr("paramsOfBook", searchingParams));
 
 		// then
 		resultActions.andExpect(view().name("billOfFoundBooks")).andExpect(model().attribute("bookList", books));
+		Mockito.verify(bookService, Mockito.times(1)).findBooksByTitleAndAuthor(searchingParams.getTitle(),
+				searchingParams.getAuthors());
 	}
 
 	@Test
@@ -206,6 +202,44 @@ public class BookControllerTest {
 
 		// then
 		resultActions.andExpect(view().name("billOfFoundBooks")).andExpect(model().attribute("bookList", books));
+		Mockito.verify(bookService, Mockito.times(1)).findBooksByTitleAndAuthor(searchingParams.getTitle(),
+				searchingParams.getAuthors());
+	}
+
+	@Test
+	public void shouldReturnListOfAllBooksWithDeleteOption() throws Exception {
+
+		// given
+		given(bookService.findAllBooks()).willReturn(allBooks);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(get("/books/delete"));
+
+		// then
+		resultActions.andExpect(view().name("booksWithDeleteOption"))
+				.andExpect(model().attribute(ModelConstants.BOOK_LIST, allBooks));
+		Mockito.verify(bookService, Mockito.times(1)).findAllBooks();
+	}
+
+	@Test
+	public void shouldDeleteOneBookAndRturnItsDetails() throws Exception {
+
+		// given
+		Long id = 1L;
+		Mockito.doNothing().when(bookValidation).validateIdOfBook(id);
+		given(bookService.findBookById(id)).willReturn(book1);
+		Mockito.doNothing().when(bookService).deleteBook(id);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(get("/books/deletedBook?id=" + id));
+
+		// then
+		resultActions.andExpect(view().name("bookJustDeleted"))
+				.andExpect(model().attribute(ModelConstants.BOOK, book1));
+		Mockito.verify(bookValidation, Mockito.times(1)).validateIdOfBook(id);
+		Mockito.verify(bookService, Mockito.times(1)).findBookById(id);
+		Mockito.verify(bookService, Mockito.times(1)).deleteBook(id);
+		Mockito.inOrder(bookValidation, bookService, bookService);
 	}
 
 }
