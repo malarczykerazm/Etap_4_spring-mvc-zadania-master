@@ -49,7 +49,7 @@ public class BookController {
 	}
 
 	/**
-	 * Method collects info about the book of the particular ID
+	 * Method collects info about the book of the provided ID
 	 */
 	@RequestMapping(value = "/book", method = RequestMethod.GET)
 	public ModelAndView oneBookById(@RequestParam("id") Long id) {
@@ -63,8 +63,7 @@ public class BookController {
 			return modelAndView;
 		}
 
-		modelAndView.addObject(ModelConstants.BOOK,
-				bookService.findAllBooks().stream().filter(b -> (b.getId() == id)).findFirst().orElse(null));
+		modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(id));
 		modelAndView.setViewName(ViewNames.BOOK_DETAILS);
 		return modelAndView;
 	}
@@ -136,7 +135,7 @@ public class BookController {
 	}
 
 	/**
-	 * Method shows a list o books with added option DELETE next to every
+	 * Method shows a list o books with the option DELETE added next to every
 	 * position on the list
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
