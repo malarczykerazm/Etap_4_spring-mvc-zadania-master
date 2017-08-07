@@ -10,6 +10,7 @@ import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.mapper.BookMapper;
 import pl.spring.demo.repository.BookRepository;
 import pl.spring.demo.service.BookService;
+import pl.spring.demo.service.BookValidationService;
 import pl.spring.demo.to.BookTo;
 
 @Service
@@ -18,6 +19,9 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
+
+	@Autowired
+	private BookValidationService bookValidaiton;
 
 	@Override
 	public List<BookTo> findAllBooks() {
@@ -41,7 +45,9 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookTo findBookById(Long id) {
-		return BookMapper.map2To(bookRepository.findBookById(id)).stream().findFirst().orElse(null);
+		BookTo foundBook = BookMapper.map2To(bookRepository.findBookById(id)).stream().findFirst().orElse(null);
+		bookValidaiton.validateBookId(foundBook);
+		return foundBook;
 	}
 
 	@Override
@@ -56,11 +62,6 @@ public class BookServiceImpl implements BookService {
 	@Transactional(readOnly = false)
 	public void deleteBook(Long id) {
 		bookRepository.delete(id);
-	}
-
-	@Override
-	public Long getHighestId() {
-		return this.findAllBooks().stream().map(b -> b.getId()).max(Long::compare).get();
 	}
 
 }

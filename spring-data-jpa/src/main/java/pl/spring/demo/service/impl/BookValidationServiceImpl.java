@@ -17,18 +17,18 @@ public class BookValidationServiceImpl implements BookValidationService {
 	BookService bookService;
 
 	@Override
-	public void validateIdOfBook(Long id) throws NoSuchBookIdException {
-		if (null == bookService.findBookById(id)) {
+	public void validateBookId(BookTo foundBook) throws NoSuchBookIdException {
+		if (null == foundBook) {
 			throw new NoSuchBookIdException("There is no book of the provided Id.");
 		}
 	}
 
 	@Override
 	public void valideteBookData(BookTo book) throws NotEnoughBookDataException {
-		if ("" == book.getTitle()) {
+		if ("" == book.getTitle() || null == book.getTitle()) {
 			throw new NotEnoughBookDataException("There was no book title provided.");
 		}
-		if ("" == book.getAuthors()) {
+		if ("" == book.getAuthors() || null == book.getAuthors()) {
 			throw new NotEnoughBookDataException("There was no book author(s) provided.");
 		}
 		if (BookStatus.FREE != book.getStatus() && BookStatus.LOAN != book.getStatus()

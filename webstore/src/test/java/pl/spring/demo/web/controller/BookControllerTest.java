@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -82,7 +83,7 @@ public class BookControllerTest {
 
 		// then
 		resultActions.andExpect(view().name("books")).andExpect(model().attribute(ModelConstants.BOOK_LIST, allBooks));
-		Mockito.verify(bookService, Mockito.times(1)).findAllBooks();
+		Mockito.verify(bookService).findAllBooks();
 	}
 
 	@Test
@@ -90,17 +91,15 @@ public class BookControllerTest {
 
 		// given
 		Long id = 1L;
-		Mockito.doNothing().when(bookValidation).validateIdOfBook(id);
 		given(bookService.findBookById(id)).willReturn(book1);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(get("/books/book?id=" + id));
+		ResultActions resultActions = mockMvc.perform(get("/books/" + id));
 
 		// then
 		resultActions.andExpect(view().name("bookDetails")).andExpect(model().attribute(ModelConstants.BOOK, book1));
-		Mockito.verify(bookValidation, Mockito.times(1)).validateIdOfBook(id);
-		Mockito.verify(bookService, Mockito.times(1)).findBookById(id);
-		Mockito.inOrder(bookValidation, bookService);
+		InOrder inOrder = Mockito.inOrder(bookService);
+		inOrder.verify(bookService).findBookById(id);
 	}
 
 	@Test
@@ -119,28 +118,20 @@ public class BookControllerTest {
 	public void shouldAddOneBook() throws Exception {
 
 		// given
-		Long newId = 3L;
-
 		BookTo newBook = new BookTo();
 		newBook.setTitle("title");
 		newBook.setAuthors("author");
 		newBook.setStatus(BookStatus.FREE);
 
-		Mockito.doNothing().when(bookValidation).valideteBookData(newBook);
 		given(bookService.saveBook(newBook)).willReturn(newBook);
-		given(bookService.getHighestId()).willReturn(newId);
-		given(bookService.findBookById(newId)).willReturn(newBook);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(post("/books/add").flashAttr("newBook", newBook));
 
 		// then
 		resultActions.andExpect(view().name("bookJustAdded")).andExpect(model().attribute("book", newBook));
-		Mockito.verify(bookValidation, Mockito.times(1)).valideteBookData(newBook);
-		Mockito.verify(bookService, Mockito.times(1)).saveBook(newBook);
-		Mockito.verify(bookService, Mockito.times(1)).getHighestId();
-		Mockito.verify(bookService, Mockito.times(1)).findBookById(newId);
-		Mockito.inOrder(bookValidation, bookService, bookService, bookService);
+		InOrder inOrder = Mockito.inOrder(bookService);
+		inOrder.verify(bookService).saveBook(newBook);
 	}
 
 	@Test
@@ -175,8 +166,7 @@ public class BookControllerTest {
 
 		// then
 		resultActions.andExpect(view().name("billOfFoundBooks")).andExpect(model().attribute("bookList", books));
-		Mockito.verify(bookService, Mockito.times(1)).findBooksByTitleAndAuthor(searchingParams.getTitle(),
-				searchingParams.getAuthors());
+		Mockito.verify(bookService).findBooksByTitleAndAuthor(searchingParams.getTitle(), searchingParams.getAuthors());
 	}
 
 	@Test
@@ -202,8 +192,7 @@ public class BookControllerTest {
 
 		// then
 		resultActions.andExpect(view().name("billOfFoundBooks")).andExpect(model().attribute("bookList", books));
-		Mockito.verify(bookService, Mockito.times(1)).findBooksByTitleAndAuthor(searchingParams.getTitle(),
-				searchingParams.getAuthors());
+		Mockito.verify(bookService).findBooksByTitleAndAuthor(searchingParams.getTitle(), searchingParams.getAuthors());
 	}
 
 	@Test
@@ -218,7 +207,7 @@ public class BookControllerTest {
 		// then
 		resultActions.andExpect(view().name("booksWithDeleteOption"))
 				.andExpect(model().attribute(ModelConstants.BOOK_LIST, allBooks));
-		Mockito.verify(bookService, Mockito.times(1)).findAllBooks();
+		Mockito.verify(bookService).findAllBooks();
 	}
 
 	@Test
@@ -226,20 +215,18 @@ public class BookControllerTest {
 
 		// given
 		Long id = 1L;
-		Mockito.doNothing().when(bookValidation).validateIdOfBook(id);
 		given(bookService.findBookById(id)).willReturn(book1);
 		Mockito.doNothing().when(bookService).deleteBook(id);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(get("/books/deletedBook?id=" + id));
+		ResultActions resultActions = mockMvc.perform(get("/books/delete/" + id));
 
 		// then
 		resultActions.andExpect(view().name("bookJustDeleted"))
 				.andExpect(model().attribute(ModelConstants.BOOK, book1));
-		Mockito.verify(bookValidation, Mockito.times(1)).validateIdOfBook(id);
-		Mockito.verify(bookService, Mockito.times(1)).findBookById(id);
-		Mockito.verify(bookService, Mockito.times(1)).deleteBook(id);
-		Mockito.inOrder(bookValidation, bookService, bookService);
+		InOrder inOrder = Mockito.inOrder(bookService);
+		inOrder.verify(bookService).findBookById(id);
+		inOrder.verify(bookService).deleteBook(id);
 	}
 
 }

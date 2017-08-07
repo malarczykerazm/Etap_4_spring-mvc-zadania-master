@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.spring.demo.constants.ModelConstants;
@@ -51,21 +51,19 @@ public class BookController {
 	/**
 	 * Method collects info about the book of the provided ID
 	 */
-	@RequestMapping(value = "/book", method = RequestMethod.GET)
-	public ModelAndView oneBookById(@RequestParam("id") Long id) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ModelAndView oneBookById(@PathVariable("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		try {
-			bookValidation.validateIdOfBook(id);
+			modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(id));
+			modelAndView.setViewName(ViewNames.BOOK_DETAILS);
+			return modelAndView;
 		} catch (NoSuchBookIdException e) {
 			modelAndView.addObject(ModelConstants.ERROR_MESSAGE, e.getMessage());
 			modelAndView.setViewName(ViewNames._404);
 			return modelAndView;
 		}
-
-		modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(id));
-		modelAndView.setViewName(ViewNames.BOOK_DETAILS);
-		return modelAndView;
 	}
 
 	/**
@@ -95,8 +93,7 @@ public class BookController {
 			return modelAndView;
 		}
 
-		bookService.saveBook(book);
-		modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(bookService.getHighestId()));
+		modelAndView.addObject(ModelConstants.BOOK, bookService.saveBook(book));
 		modelAndView.setViewName(ViewNames.BOOK_JUST_ADDED);
 		return modelAndView;
 	}
@@ -149,22 +146,20 @@ public class BookController {
 	/**
 	 * Method deletes a chosen book from database and shows a proper book info
 	 */
-	@RequestMapping(value = "/deletedBook", method = RequestMethod.GET)
-	public ModelAndView deleteBook(@RequestParam("id") Long id) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteBook(@PathVariable("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		try {
-			bookValidation.validateIdOfBook(id);
+			modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(id));
+			modelAndView.setViewName(ViewNames.BOOK_JUST_DELETED);
+			bookService.deleteBook(id);
+			return modelAndView;
 		} catch (NoSuchBookIdException e) {
 			modelAndView.addObject(ModelConstants.ERROR_MESSAGE, e.getMessage());
 			modelAndView.setViewName(ViewNames._404);
 			return modelAndView;
 		}
-
-		modelAndView.addObject(ModelConstants.BOOK, bookService.findBookById(id));
-		modelAndView.setViewName(ViewNames.BOOK_JUST_DELETED);
-		bookService.deleteBook(id);
-		return modelAndView;
 	}
 
 	/**

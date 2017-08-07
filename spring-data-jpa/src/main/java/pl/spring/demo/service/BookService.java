@@ -19,6 +19,4 @@ public interface BookService {
 	BookTo saveBook(BookTo book);
 
 	void deleteBook(Long id);
-
-	Long getHighestId();
 }

@@ -6,7 +6,7 @@ import pl.spring.demo.to.BookTo;
 
 public interface BookValidationService {
 
-	void validateIdOfBook(Long id) throws NoSuchBookIdException;
+	void validateBookId(BookTo foundBook) throws NoSuchBookIdException;
 
 	void valideteBookData(BookTo book) throws NotEnoughBookDataException;
 

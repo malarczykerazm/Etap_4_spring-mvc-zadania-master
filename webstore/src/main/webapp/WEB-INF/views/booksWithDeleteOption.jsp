@@ -49,11 +49,11 @@
 							<p>${book.authors}</p>
 							<p>Status: ${book.status}</p>
 							<p>
-								<a href=" <spring:url value="/books/book?id=${book.id}" /> "
+								<a href=" <spring:url value="/books/${book.id}" /> "
 									class="btn btn-primary" style="margin-bottom: -10px"> <span
 									class="glyphicon-info-sign glyphicon"></span> details
 								</a>
-								<a href=" <spring:url value="/books/deletedBook?id=${book.id}" /> "
+								<a href=" <spring:url value="/books/delete/${book.id}" /> "
 									class="btn btn-danger btn-mini" style="margin-bottom: -10px"> <span
 									class="glyphicon-trash glyphicon"></span> delete
 								</a>

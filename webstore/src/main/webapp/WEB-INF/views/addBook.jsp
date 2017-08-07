@@ -18,8 +18,8 @@
 					Add<br> <small>a new book</small>
 				</h1>
 				<a
-					href="<spring:url value="/" />" class="btn btn-default" style="margin-left: 2px"> <span
-					class="glyphicon-hand-left glyphicon pull-left"></span> back
+					href="<spring:url value="/" />" class="btn btn-default pull-left" style="margin-right: 2px"> <span
+					class="glyphicon-hand-left glyphicon"></span> back
 				</a>
 				<a href="<c:url value="/j_spring_security_logout" />"
 					class="btn btn-danger btn-mini pull-right" style="margin-left: 2px"> <span
